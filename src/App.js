@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useEthers, useEtherBalance } from '@usedapp/core';
 
 function App() {
