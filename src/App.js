@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import { useEthers, useEtherBalance } from '@usedapp/core';
 
 function App() {
+  const { activateBrowserWallet, account } = useEthers();
+  const etherBalance = useEtherBalance(account);
+
+  const startDapp = () => {}
+  const handleConnectWallet = (e) => {
+    activateBrowserWallet();
+
+  }
+
+  useEffect(() => {
+    startDapp();
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        account
+        ? <p>{etherBalance && JSON.stringify(etherBalance)} ETH</p>
+        : <button onClick={handleConnectWallet}>Conectar con la wallet</button>
+      }
     </div>
   );
 }
